@@ -167,10 +167,13 @@ function initializeGame(): Game {
  * @returns a Winner if there was 3 in a row, and NoWinner (null) if not
  */
 function hasWinnerHorizontal(board: Board): Winner | NoWinner {
-  board.forEach(row => {
-    const first = row[0];
-    if (row.every(value => first == value)) return first as Winner;
-  });
+  for (const i in board) {
+    const col1 = board[i][0];
+    const col2 = board[i][1];
+    const col3 = board[i][2];
+
+    if (col1 == col2 && col2 == col3 && col1 != null as Empty) return col1 as Winner;
+  }
 
   return null as NoWinner;
 }
@@ -183,12 +186,12 @@ function hasWinnerHorizontal(board: Board): Winner | NoWinner {
  * @returns a Winner if there was 3 in a row, and NoWinner (null) if not
  */
 function hasWinnerVertical(board: Board): Winner | NoWinner {
-  for (const i in board) {
+  for (let i = 0; i < board.length; i++) {
     const col1 = board[0][i];
     const col2 = board[1][i];
     const col3 = board[2][i];
 
-    if (col1 == col2 && col2 == col3) return col1 as Winner;
+    if (col1 == col2 && col2 == col3 && col1 != null as Empty) return col1 as Winner;
   }
 
   return null as NoWinner;
@@ -208,8 +211,8 @@ function hasWinnerDiagonal(board: Board): Winner | NoWinner {
   const botR   = board[2][2];
   const botL   = board[2][0];
 
-  if (topL == origin && origin == botR) return topL as Winner;
-  if (topR == origin && origin == botL) return topR as Winner;
+  if (topL == origin && origin == botR && topL != null as Empty) return topL as Winner;
+  if (topR == origin && origin == botL && topL != null as Empty) return topR as Winner;
 
   return null as NoWinner;
 }
