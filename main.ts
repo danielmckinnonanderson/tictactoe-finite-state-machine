@@ -338,6 +338,5 @@ const game: Game = initializeGame();
 const playing = true;
 
 while (playing) {
- const operation: void = await game.stateMachine.transition();
- operation;
+ await game.stateMachine.transition();
 }
