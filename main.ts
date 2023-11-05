@@ -167,7 +167,7 @@ function initializeGame(): Game {
  * @returns a Winner if there was 3 in a row, and NoWinner (null) if not
  */
 function hasWinnerHorizontal(board: Board): Winner | NoWinner {
-  for (const i in board) {
+  for (let i = 0; i < board.length; i++) {
     const col1 = board[i][0];
     const col2 = board[i][1];
     const col3 = board[i][2];
